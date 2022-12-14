@@ -2,10 +2,11 @@
 <html  xmlns:th="http://www.thymeleaf.org">
   <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  
   <title>BICYCLE SEARCH</title>
   <!-- bootstrapを読み込む -->
   <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
-  <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
   <!-- jqueryを読み込む -->
   <script type="text/javascript" th:src="@{/js/jquery-3.6.1.min.js}"></script>
   <!-- bootstrap-datepickerを読み込む -->
@@ -15,24 +16,53 @@
   <!-- date-tableを読み込む -->
   <link rel="stylesheet" type="text/css" th:href="@{/css/datatables.min.css}"/>
   <script type="text/javascript" th:src="@{/js/datatables.min.js}"></script>
+  
+  <!-- header用css -->
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" th:href="@{/css/reset.min.css}" />
+  <link rel="stylesheet" th:href="@{/css/style.css}" />
+  <link rel="stylesheet" th:href="@{/css/header-14.css}" />
+  
   </head>
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light" style="background-color:#CCFFFF;">
-    <span class="navbar-brand">
-      <strong>BICYCLE SEARCH</strong>
-    </span>
-      <div class="collapse navbar-collapse justify-content-end">
-        <ul class="navbar-nav">
-          <li class="nav-item ">
-            <span class="navbar-text" th:text="'ログインユーザ：' + ${#httpServletRequest.remoteUser}"></span>
-          </li>
-        </ul>
-        <form method="POST" th:action="@{/logout}">
-          <button type="submit" class="btn btn-link">ログアウト</button>
+
+  <div th:replace="header :: header"></div>
+
+    <div class="container">
+    
+      <div class="search m-2">
+        <form method="GET" th:action="@{/portfolio}" th:object="${getForm}">
+            <div class="form-group">
+            <div class="row">
+            <p>BRAND
+              <select id="brandid" name="brandid" class="form-select" th:value="${getForm.brandid}">
+                <option></option>
+                <option value="1" th:selected="${getForm.brandid} == 1">TREK</option>
+                <option value="2" th:selected="${getForm.brandid} == 2">SCOTT</option>
+                <option value="3" th:selected="${getForm.brandid} == 3">COLNAGO</option>
+              </select>
+              </p>
+            </div>
+          </div>
+          <div class="row">
+              <button type="submit" class="btn btn-outline-dark">検索</button>
+          </div>
         </form>
       </div>
-    </nav>
     
-    <h1>Hello world</h1>
+      <div class="row">
+        <div class="col-md-4" th:each="item: ${list}">
+          <div class="border">
+            <img th:src="@{/image/{item.imageurl}.jpg (item.imageurl=${item.imageurl})}" alt="road bike pictures" class="img-fluid">
+            <a th:href="@{/portfolio/{id}(id=${item.id})}">
+              <h3 th:text=${item.bikename}></h3>
+            </a>
+            <p th:text=${item.brandname}></p>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+    
 </body>
 </html>

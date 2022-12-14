@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+    <title>BICYCLE SEARCH</title>
+    <!-- bootstrapを読み込む -->
+    <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+    <link th:href="@{/css/bs.css}" rel="stylesheet" type="text/css">
+    <script type="text/javascript" th:src="@{/js/bootstrap.bundle.min.js}"></script>
+    <!-- jqueryを読み込む -->
+    <script type="text/javascript" th:src="@{/js/jquery-3.6.1.min.js}"></script>
+    
+    <!-- header用css -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" th:href="@{/css/reset.min.css}" />
+    <link rel="stylesheet" th:href="@{/css/style.css}" />
+    <link rel="stylesheet" th:href="@{/css/header-14.css}" />
+    
+</head>
+<body>
+  
+  <div th:replace="header :: header"></div>
+  
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <div class="sidebar-fixed">
+        
+        <ul class="list-group list-group-flush">
+          <li class="list-group-item">
+            <div class="d-flex flex-row bd-highlight mb-3">
+              <div><h3>販売名 &nbsp;</h3></div>
+              <div><h3 th:text="${bicycles.bikename}"></h3></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex flex-row bd-highlight mb-3">
+              <div><h3>価格 &nbsp;&nbsp;&nbsp;&nbsp;</h3></div>
+              <div><h3>&yen;</h3></div>
+              <div><h3 th:text="${bicycles.value}"></h3></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex flex-row bd-highlight mb-3">
+              <div><h3>カラー &nbsp;&nbsp;&nbsp;</h3></div>
+              <div><h3 th:text="${bicycles.color}"></h3></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="d-flex flex-row bd-highlight mb-3">
+              <div><h3>サイズ &nbsp;&nbsp;</h3></div>
+              <div><h3 th:text="${bicycles.size}"></h3></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <form method="GET" th:action="@{/portfolio/shoplist}" th:object="${getShopForm}">
+              <input type="hidden" name="id" th:value="${bicycles.id}">
+              <button type="submit" class="btn btn-outline-dark">
+                販売店検索
+              </button>
+            </form>
+          </li>
+        </ul>
+        </div>
+      </div>
+      <div class="col">
+        <div class="border-start">
+          <img th:src="@{/image/{bicycles.imageurl}.jpg (bicycles.imageurl=${bicycles.imageurl})}" alt="road bike pictures" width="1050" height="900" style="display: block; margin: auto;">
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+</body>
+</html>
