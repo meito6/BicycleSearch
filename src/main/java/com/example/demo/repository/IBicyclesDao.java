@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.example.demo.entity.Bicycles;
 import com.example.demo.entity.ShopList;
+import com.example.demo.entity.ShopListAll;
 import com.example.demo.form.GetForm;
+import com.example.demo.form.GetShopAllForm;
 import com.example.demo.form.GetShopForm;
 import com.example.demo.form.UserPostForm;
 
@@ -21,4 +23,7 @@ public interface IBicyclesDao {
 	
 	//bikeidを取得して店を検索
 	List<ShopList> findShop(GetShopForm form);
+	
+	//登録されているshopを取得
+	List<ShopListAll> findShopAll(GetShopAllForm form);
 }

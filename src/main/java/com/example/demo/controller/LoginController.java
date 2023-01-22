@@ -31,7 +31,7 @@ private final PortfolioService portfolioservice;
 
 	 @PostMapping
 	    String postLogin() {
-	        return "redirect:/portfolio";
+	        return "redirect:/portfolio/list";
 	    }
 	 
 	 /**

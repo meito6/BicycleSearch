@@ -12,7 +12,9 @@ import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Bicycles;
 import com.example.demo.entity.ShopList;
+import com.example.demo.entity.ShopListAll;
 import com.example.demo.form.GetForm;
+import com.example.demo.form.GetShopAllForm;
 import com.example.demo.form.GetShopForm;
 import com.example.demo.form.UserPostForm;
 
@@ -141,6 +143,48 @@ public class BicyclesDao implements IBicyclesDao {
         }
         return list;
         
+	}
+	
+	//shop一覧を取得。
+	@Override
+	public List<ShopListAll> findShopAll(GetShopAllForm form){
+		
+		StringBuilder sqlBuilder = new StringBuilder();
+		sqlBuilder.append("SELECT s.shopid, s.shopname, s.bikeid, s.prefecture, s.address, p.prefecturename "
+				+ "FROM shops AS s INNER JOIN prefectures AS p ON s.prefecture = p.prefectureid "
+				+ "GROUP BY shopname ");
+		
+		//パラメータ設定用Map
+		Map<String, String> param = new HashMap<>();
+		//パラメータが存在した場合にセット
+		if(form.getPrefecture() != null && form.getPrefecture() != "") {
+			sqlBuilder.delete(158,179);
+			sqlBuilder.append(" WHERE p.prefectureid = :prefectureid");
+			sqlBuilder.append(" GROUP BY shopname");
+			param.put("prefectureid", form.getPrefecture());
+		}
+		
+		
+		String sql = sqlBuilder.toString();
+		
+		//タスク一覧をMapのListで取得
+		List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql, param);
+		//return用の空のListを用意
+		List<ShopListAll> list = new ArrayList<ShopListAll>();
+		
+		//データをShopListAllにまとめる
+		for(Map<String, Object> result : resultList) {
+			ShopListAll shopListAll = new ShopListAll();
+            shopListAll.setShopid((int)result.get("shopid"));
+			shopListAll.setShopname((String)result.get("shopname"));
+			shopListAll.setBikeid((int)result.get("bikeid"));
+			shopListAll.setPrefecture((String)result.get("prefecture"));
+			shopListAll.setAddress((String)result.get("address"));
+			shopListAll.setPrefecturename((String)result.get("prefecturename"));
+			list.add(shopListAll);
+			
+		}
+		return list;
 	}
 	
 }

@@ -12,7 +12,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.Bicycles;
 import com.example.demo.entity.ShopList;
+import com.example.demo.entity.ShopListAll;
 import com.example.demo.form.GetForm;
+import com.example.demo.form.GetShopAllForm;
 import com.example.demo.form.GetShopForm;
 import com.example.demo.form.UserPostForm;
 import com.example.demo.repository.IBicyclesDao;
@@ -52,5 +54,9 @@ public class PortfolioService {
 	
 	public List<ShopList> findShop(GetShopForm form){
 		return dao.findShop(form);
+	}
+	
+	public List<ShopListAll> findShopAll(GetShopAllForm form){
+		return dao.findShopAll(form);
 	}
 }

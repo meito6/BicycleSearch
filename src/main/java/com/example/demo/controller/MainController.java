@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Bicycles;
 import com.example.demo.entity.ShopList;
+import com.example.demo.entity.ShopListAll;
 import com.example.demo.form.GetForm;
+import com.example.demo.form.GetShopAllForm;
 import com.example.demo.form.GetShopForm;
 import com.example.demo.service.PortfolioService;
 
@@ -33,7 +35,7 @@ public class MainController {
 	 *@param model
 	 *@retrun resources/templates/list.html
 	 */
-	@GetMapping
+	@GetMapping("/list")
 	public String bicycleList(@ModelAttribute GetForm form, Model model) {
 		List<Bicycles> list = portfolioservice.findList(form);
 		model.addAttribute("list", list);
@@ -74,5 +76,35 @@ public class MainController {
 		model.addAttribute("getShopForm", form);
 		return "shoplist";
 	}
-
+	
+	/**
+	 * Shop一覧表示
+	 * @param model
+	 * @return resources/templates/shoplistall
+	 */
+	@GetMapping("/shoplistall")
+	public String shopListAll(@ModelAttribute GetShopAllForm form, Model model) {
+		List<ShopListAll> list = portfolioservice.findShopAll(form);
+		model.addAttribute("list", list);
+		model.addAttribute("getShopAll", form);
+		
+		return "shoplistall";
+	}
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
