@@ -35,14 +35,14 @@
           </li>
           <li class="list-group-item">
             <div class="d-flex flex-row bd-highlight mb-3">
-              <div><p class="text-1">価格 &nbsp;&nbsp;&nbsp;&nbsp;</p></div>
+              <div><p class="text-1">価格 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
               <div><p class="text-1">&yen;</p></div>
               <div><p class="text-1" th:text="${bicycles.value}"></p></div>
             </div>
           </li>
           <li class="list-group-item">
             <div class="d-flex flex-row bd-highlight mb-3">
-              <div><p class="text-1">カラー &nbsp;&nbsp;&nbsp;</p></div>
+              <div><p class="text-1">カラー&nbsp;&nbsp;</p></div>
               <div><p class="text-1" th:text="${bicycles.color}"></p></div>
             </div>
           </li>
@@ -67,6 +67,85 @@
         <div class="border-start">
           <img th:src="@{/image/{bicycles.imageurl}.jpg (bicycles.imageurl=${bicycles.imageurl})}" alt="road bike pictures" width="70%" height="70%" style="display: block; margin: auto;">
         </div>
+        
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>SPEC</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Frame</th>
+              <td><p th:text="${bicycles.frame}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Fork</th>
+              <td><p th:text="${bicycles.fork}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Handlebar</th>
+              <td><p th:text="${bicycles.handlebar}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Frontwheel</th>
+              <td><p th:text="${bicycles.forntwheel}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Rearwheel</th>
+              <td><p th:text="${bicycles.rearwheel}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Rims</th>
+              <td><p th:text="${bicycles.rims}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tires</th>
+              <td><p th:text="${bicycles.tires}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Tiresize</th>
+              <td><p th:text="${bicycles.tiresize}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Shifters</th>
+              <td><p th:text="${bicycles.shifters}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Frontderailleur</th>
+              <td><p th:text="${bicycles.forntderailleur}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Rearderailleur</th>
+              <td><p th:text="${bicycles.rearderailleur}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Crank</th>
+              <td><p th:text="${bicycles.crank}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Bottombracket</th>
+              <td><p th:text="${bicycles.bottombracket}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Chain</th>
+              <td><p th:text="${bicycles.chain}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Saddle</th>
+              <td><p th:text="${bicycles.saddle}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Seatpost</th>
+              <td><p th:text="${bicycles.seatpost}"></td>
+            </tr>
+            <tr>
+              <th scope="row">Stem</th>
+              <td><p th:text="${bicycles.stem}"></td>
+            </tr>
+          </tbody>
+        </table>
+        
       </div>
     </div>
   </div>

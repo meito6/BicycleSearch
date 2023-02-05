@@ -88,7 +88,9 @@ public class BicyclesDao implements IBicyclesDao {
 	//バイク詳細を一件取得
 	@Override
 	public Bicycles findById(int id) throws IncorrectResultSizeDataAccessException{
-		String sql = "SELECT bi.id, bi.bikename, bi.brandid, bi.size, bi.color, bi.value, bi.imageurl, br.brandname "
+		String sql = "SELECT bi.id, bi.bikename, bi.brandid, bi.size, bi.color, bi.value, bi.imageurl, bi.forntwheel, bi.rearwheel, bi.rims, bi.tires, "
+				+ "bi.tiresize, bi.shifters, bi.forntderailleur, bi.rearderailleur, bi.crank, bi.bottombracket, bi.chain, bi.saddle, bi.seatpost, bi.stem, "
+				+ "bi.frame, bi.fork, bi.handlebar, br.brandname "
 				+ "FROM bicycles AS bi INNER JOIN brand AS br ON bi.brandid = br.brandid "
 				+ "WHERE bi.id = :id";
 		//パラメータ設定用Map
@@ -104,6 +106,23 @@ public class BicyclesDao implements IBicyclesDao {
 		bicycles.setColor((String)result.get("color"));
 		bicycles.setValue((int)result.get("value"));
 		bicycles.setImageurl((String)result.get("imageurl"));
+		bicycles.setForntwheel((String)result.get("forntwheel"));
+		bicycles.setRearwheel((String)result.get("rearwheel"));
+		bicycles.setRims((String)result.get("rims"));
+		bicycles.setTires((String)result.get("tires"));
+		bicycles.setTiresize((String)result.get("tiresize"));
+		bicycles.setShifters((String)result.get("shifters"));
+		bicycles.setForntderailleur((String)result.get("forntderailleur"));
+		bicycles.setRearderailleur((String)result.get("rearderailleur"));
+		bicycles.setCrank((String)result.get("crank"));
+		bicycles.setBottombracket((String)result.get("bottombracket"));
+		bicycles.setChain((String)result.get("chain"));
+		bicycles.setSaddle((String)result.get("saddle"));
+		bicycles.setSeatpost((String)result.get("seatpost"));
+		bicycles.setStem((String)result.get("stem"));
+		bicycles.setFrame((String)result.get("frame"));
+		bicycles.setFork((String)result.get("fork"));
+		bicycles.setHandlebar((String)result.get("handlebar"));
 		bicycles.setBrandname((String)result.get("brandname"));
 		
 		return bicycles;
