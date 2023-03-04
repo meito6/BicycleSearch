@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -jar target/bicycle-search-0.0.1-SNAPSHOT.
+web: java -Dserver.port=$PORT -jar target/bicycle-search-0.0.1-SNAPSHOT.jar
