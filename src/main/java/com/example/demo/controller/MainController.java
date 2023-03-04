@@ -12,8 +12,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.entity.Bicycles;
+import com.example.demo.entity.BikeListInShop;
 import com.example.demo.entity.ShopList;
 import com.example.demo.entity.ShopListAll;
+import com.example.demo.form.GetBikeListInShop;
 import com.example.demo.form.GetForm;
 import com.example.demo.form.GetShopAllForm;
 import com.example.demo.form.GetShopForm;
@@ -38,6 +40,7 @@ public class MainController {
 	@GetMapping("/list")
 	public String bicycleList(@ModelAttribute GetForm form, Model model) {
 		List<Bicycles> list = portfolioservice.findList(form);
+		
 		model.addAttribute("list", list);
 		model.addAttribute("getForm", form);
 		return "list";
@@ -67,7 +70,7 @@ public class MainController {
 	/**
 	 *shop一覧表示
 	 *@param model
-	 *@retrun resources/templates/bikedetail.html
+	 *@retrun resources/templates/shoplist.html
 	 */
 	@GetMapping("/shoplist")
 	public String shopList(@ModelAttribute GetShopForm form, Model model) {
@@ -89,6 +92,20 @@ public class MainController {
 		model.addAttribute("getShopAll", form);
 		
 		return "shoplistall";
+	}
+	
+	/**
+	 * ショップに登録されているバイク一覧を取得
+	 * @param model
+	 * @return resources/templates/bikeListInShop.html
+	 */
+	@GetMapping("/bikeListInShop")
+	public String bikeListInShop(@ModelAttribute GetBikeListInShop form, Model model) {
+		List<BikeListInShop> list = portfolioservice.findBikeInShop(form);
+		model.addAttribute("list", list);
+		model.addAttribute("getBikeListInShop", form);
+		
+		return "bikeListInShop";
 	}
 	
 }

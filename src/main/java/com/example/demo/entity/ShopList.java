@@ -4,11 +4,15 @@ public class ShopList {
 
 	private int id;
 	
-    private int shopid;
+    private int shopnumber;
 	
 	private String shopname;
 	
 	private int bikeid;
+	
+    private String address;
+	
+	private String telephone;
 
 
 	public int getId() {
@@ -19,12 +23,12 @@ public class ShopList {
 		this.id = id;
 	}
 
-	public int getShopid() {
-		return shopid;
+	public int getShopnumber() {
+		return shopnumber;
 	}
 
-	public void setShopid(int shopid) {
-		this.shopid = shopid;
+	public void setShopnumber(int shopnumber) {
+		this.shopnumber = shopnumber;
 	}
 
 	public String getShopname() {
@@ -42,4 +46,21 @@ public class ShopList {
 	public void setBikeid(int bikeid) {
 		this.bikeid = bikeid;
 	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
+	}
+	
 }

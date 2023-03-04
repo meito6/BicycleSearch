@@ -2,26 +2,26 @@ package com.example.demo.entity;
 
 public class ShopListAll {
 
-    private int shopid;
+    private int id;
 	
 	private String shopname;
-	
-	private int bikeid;
 	
 	private String prefecture;
 	
 	private String address;
 	
+	private String telephone;
+	
 	private String prefecturename;
+	
+	
 
-
-
-	public int getShopid() {
-		return shopid;
+	public int getId() {
+		return id;
 	}
 
-	public void setShopid(int shopid) {
-		this.shopid = shopid;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getShopname() {
@@ -30,14 +30,6 @@ public class ShopListAll {
 
 	public void setShopname(String shopname) {
 		this.shopname = shopname;
-	}
-
-	public int getBikeid() {
-		return bikeid;
-	}
-
-	public void setBikeid(int bikeid) {
-		this.bikeid = bikeid;
 	}
 
 	public String getPrefecture() {
@@ -54,6 +46,14 @@ public class ShopListAll {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getTelephone() {
+		return telephone;
+	}
+
+	public void setTelephone(String telephone) {
+		this.telephone = telephone;
 	}
 
 	public String getPrefecturename() {

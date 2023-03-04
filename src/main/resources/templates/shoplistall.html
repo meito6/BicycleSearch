@@ -21,88 +21,102 @@
 <body>
   <div th:replace="header :: header"></div>
   
-  <div><p>Shops</p></div>
-  
   <div class="container-fluid">
-    <div class="search m-2">
-      <form method="GET" th:action="@{/portfolio/shoplistall}" th:object="${getShopAllForm}">
-        <div class="form-group">
-          <div class="row">
-            <p>PREFECTURE
-              <select id="prefecture" name="prefecture" class="form-select" th:value="${getShopAllForm.prefecture}">
-                <option></option>
-                <option value="01" th:selected="${getShopAllForm.prefecture} == 01">北海道</option>
-                <option value="02" th:selected="${getShopAllForm.prefecture} == 02">青森県</option>
-                <option value="03" th:selected="${getShopAllForm.prefecture} == 03">岩手県</option>
-                <option value="04" th:selected="${getShopAllForm.prefecture} == 04">宮城県</option>
-                <option value="05" th:selected="${getShopAllForm.prefecture} == 05">秋田県</option>
-                <option value="06" th:selected="${getShopAllForm.prefecture} == 06">山形県</option>
-                <option value="07" th:selected="${getShopAllForm.prefecture} == 07">福島県</option>
-                <option value="08" th:selected="${getShopAllForm.prefecture} == 08">茨城県</option>
-                <option value="09" th:selected="${getShopAllForm.prefecture} == 09">栃木県</option>
-                <option value="10" th:selected="${getShopAllForm.prefecture} == 10">群馬県</option>
-                <option value="11" th:selected="${getShopAllForm.prefecture} == 11">埼玉県</option>
-                <option value="12" th:selected="${getShopAllForm.prefecture} == 12">千葉県</option>
-                <option value="13" th:selected="${getShopAllForm.prefecture} == 13">東京都</option>
-                <option value="14" th:selected="${getShopAllForm.prefecture} == 14">神奈川県</option>
-                <option value="15" th:selected="${getShopAllForm.prefecture} == 15">新潟県</option>
-                <option value="16" th:selected="${getShopAllForm.prefecture} == 16">富山県</option>
-                <option value="17" th:selected="${getShopAllForm.prefecture} == 17">石川県</option>
-                <option value="18" th:selected="${getShopAllForm.prefecture} == 18">福井県</option>
-                <option value="19" th:selected="${getShopAllForm.prefecture} == 19">山梨県</option>
-                <option value="20" th:selected="${getShopAllForm.prefecture} == 20">長野県</option>
-                <option value="21" th:selected="${getShopAllForm.prefecture} == 21">岐阜県</option>
-                <option value="22" th:selected="${getShopAllForm.prefecture} == 22">静岡県</option>
-                <option value="23" th:selected="${getShopAllForm.prefecture} == 23">愛知県</option>
-                <option value="24" th:selected="${getShopAllForm.prefecture} == 24">三重県</option>
-                <option value="25" th:selected="${getShopAllForm.prefecture} == 25">滋賀県</option>
-                <option value="26" th:selected="${getShopAllForm.prefecture} == 26">京都府</option>
-                <option value="27" th:selected="${getShopAllForm.prefecture} == 27">大阪府</option>
-                <option value="28" th:selected="${getShopAllForm.prefecture} == 28">兵庫県</option>
-                <option value="29" th:selected="${getShopAllForm.prefecture} == 29">奈良県</option>
-                <option value="30" th:selected="${getShopAllForm.prefecture} == 30">和歌山県</option>
-                <option value="31" th:selected="${getShopAllForm.prefecture} == 31">鳥取県</option>
-                <option value="32" th:selected="${getShopAllForm.prefecture} == 32">島根県</option>
-                <option value="33" th:selected="${getShopAllForm.prefecture} == 33">岡山県</option>
-                <option value="34" th:selected="${getShopAllForm.prefecture} == 34">広島県</option>
-                <option value="35" th:selected="${getShopAllForm.prefecture} == 35">山口県</option>
-                <option value="36" th:selected="${getShopAllForm.prefecture} == 36">徳島県</option>
-                <option value="37" th:selected="${getShopAllForm.prefecture} == 37">香川県</option>
-                <option value="38" th:selected="${getShopAllForm.prefecture} == 38">愛知県</option>
-                <option value="39" th:selected="${getShopAllForm.prefecture} == 39">高知県</option>
-                <option value="40" th:selected="${getShopAllForm.prefecture} == 40">福岡県</option>
-                <option value="41" th:selected="${getShopAllForm.prefecture} == 41">佐賀県</option>
-                <option value="42" th:selected="${getShopAllForm.prefecture} == 42">長崎県</option>
-                <option value="43" th:selected="${getShopAllForm.prefecture} == 43">熊本県</option>
-                <option value="44" th:selected="${getShopAllForm.prefecture} == 44">大分県</option>
-                <option value="45" th:selected="${getShopAllForm.prefecture} == 45">宮崎県</option>
-                <option value="46" th:selected="${getShopAllForm.prefecture} == 46">鹿児島県</option>
-                <option value="47" th:selected="${getShopAllForm.prefecture} == 47">沖縄県</option>
-              </select>
-            </p>
+    <div class="row">
+      <div class="col-2">
+        <div class="sidebar-fixed">
+          <div class="search m-2">
+            <form method="GET" th:action="@{/portfolio/shoplistall}" th:object="${getShopAllForm}">
+              <div class="form-group">
+                <div class="row">
+                 <p>PREFECTURE
+                 <select id="prefecture" name="prefecture" class="form-select" th:value="${getShopAllForm.prefecture}">
+                  <option></option>
+                  <option value="01" th:selected="${getShopAllForm.prefecture} == 01">北海道</option>
+                  <option value="02" th:selected="${getShopAllForm.prefecture} == 02">青森県</option>
+                  <option value="03" th:selected="${getShopAllForm.prefecture} == 03">岩手県</option>
+                  <option value="04" th:selected="${getShopAllForm.prefecture} == 04">宮城県</option>
+                  <option value="05" th:selected="${getShopAllForm.prefecture} == 05">秋田県</option>
+                  <option value="06" th:selected="${getShopAllForm.prefecture} == 06">山形県</option>
+                  <option value="07" th:selected="${getShopAllForm.prefecture} == 07">福島県</option>
+                  <option value="08" th:selected="${getShopAllForm.prefecture} == 08">茨城県</option>
+                  <option value="09" th:selected="${getShopAllForm.prefecture} == 09">栃木県</option>
+                  <option value="10" th:selected="${getShopAllForm.prefecture} == 10">群馬県</option>
+                  <option value="11" th:selected="${getShopAllForm.prefecture} == 11">埼玉県</option>
+                  <option value="12" th:selected="${getShopAllForm.prefecture} == 12">千葉県</option>
+                  <option value="13" th:selected="${getShopAllForm.prefecture} == 13">東京都</option>
+                  <option value="14" th:selected="${getShopAllForm.prefecture} == 14">神奈川県</option>
+                  <option value="15" th:selected="${getShopAllForm.prefecture} == 15">新潟県</option>
+                  <option value="16" th:selected="${getShopAllForm.prefecture} == 16">富山県</option>
+                  <option value="17" th:selected="${getShopAllForm.prefecture} == 17">石川県</option>
+                  <option value="18" th:selected="${getShopAllForm.prefecture} == 18">福井県</option>
+                  <option value="19" th:selected="${getShopAllForm.prefecture} == 19">山梨県</option>
+                  <option value="20" th:selected="${getShopAllForm.prefecture} == 20">長野県</option>
+                  <option value="21" th:selected="${getShopAllForm.prefecture} == 21">岐阜県</option>
+                  <option value="22" th:selected="${getShopAllForm.prefecture} == 22">静岡県</option>
+                  <option value="23" th:selected="${getShopAllForm.prefecture} == 23">愛知県</option>
+                  <option value="24" th:selected="${getShopAllForm.prefecture} == 24">三重県</option>
+                  <option value="25" th:selected="${getShopAllForm.prefecture} == 25">滋賀県</option>
+                  <option value="26" th:selected="${getShopAllForm.prefecture} == 26">京都府</option>
+                  <option value="27" th:selected="${getShopAllForm.prefecture} == 27">大阪府</option>
+                  <option value="28" th:selected="${getShopAllForm.prefecture} == 28">兵庫県</option>
+                  <option value="29" th:selected="${getShopAllForm.prefecture} == 29">奈良県</option>
+                  <option value="30" th:selected="${getShopAllForm.prefecture} == 30">和歌山県</option>
+                  <option value="31" th:selected="${getShopAllForm.prefecture} == 31">鳥取県</option>
+                  <option value="32" th:selected="${getShopAllForm.prefecture} == 32">島根県</option>
+                  <option value="33" th:selected="${getShopAllForm.prefecture} == 33">岡山県</option>
+                  <option value="34" th:selected="${getShopAllForm.prefecture} == 34">広島県</option>
+                  <option value="35" th:selected="${getShopAllForm.prefecture} == 35">山口県</option>
+                  <option value="36" th:selected="${getShopAllForm.prefecture} == 36">徳島県</option>
+                  <option value="37" th:selected="${getShopAllForm.prefecture} == 37">香川県</option>
+                  <option value="38" th:selected="${getShopAllForm.prefecture} == 38">愛知県</option>
+                  <option value="39" th:selected="${getShopAllForm.prefecture} == 39">高知県</option>
+                  <option value="40" th:selected="${getShopAllForm.prefecture} == 40">福岡県</option>
+                  <option value="41" th:selected="${getShopAllForm.prefecture} == 41">佐賀県</option>
+                  <option value="42" th:selected="${getShopAllForm.prefecture} == 42">長崎県</option>
+                  <option value="43" th:selected="${getShopAllForm.prefecture} == 43">熊本県</option>
+                  <option value="44" th:selected="${getShopAllForm.prefecture} == 44">大分県</option>
+                  <option value="45" th:selected="${getShopAllForm.prefecture} == 45">宮崎県</option>
+                  <option value="46" th:selected="${getShopAllForm.prefecture} == 46">鹿児島県</option>
+                  <option value="47" th:selected="${getShopAllForm.prefecture} == 47">沖縄県</option>
+                 </select>
+                 </p>
+                </div>
+              </div>
+              <div class="row">
+                <button type="submit" class="btn btn-outline-dark">検索</button>
+              </div>
+            </form>
           </div>
         </div>
-        <div class="row">
-          <button type="submit" class="btn btn-outline-dark">検索</button>
-        </div>
-      </form>
+      </div>
+    
+      <div class="col">
+       <table class="table">
+        <thead>
+          <tr>
+            <th>ShopName</th>
+            <th>Address</th>
+            <th>Telephone</th>
+            <th>prefecture</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="item: ${list}">
+            <td>
+              <form method="GET" th:action="@{/portfolio/bikeListInShop}" th:object="${getBikeListInShop}">
+                <input type="hidden" name="id" th:value="${item.id}">
+                <button type="submit" class="btn btn-outline-dark" th:text=${item.shopname}></button>
+              </form>
+            </td>
+            <td th:text=${item.address}></td>
+            <td th:text=${item.telephone}></td>
+            <td th:text=${item.prefecturename}></td>
+          </tr>
+        </tbody>
+       </table>
+      </div>
     </div>
-    
-    <table class="table">
-      <thead>
-        <tr>
-          <th>Shop Name</th>
-          <th>Shop Address</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr th:each="item: ${list}">
-          <td th:text=${item.shopname}></td>
-          <td th:text=${item.address}></td>
-        </tr>
-      </tbody>
-    </table>
-    
   </div>    
 </body>
 </html>

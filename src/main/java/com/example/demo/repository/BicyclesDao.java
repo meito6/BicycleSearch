@@ -11,8 +11,10 @@ import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.example.demo.entity.Bicycles;
+import com.example.demo.entity.BikeListInShop;
 import com.example.demo.entity.ShopList;
 import com.example.demo.entity.ShopListAll;
+import com.example.demo.form.GetBikeListInShop;
 import com.example.demo.form.GetForm;
 import com.example.demo.form.GetShopAllForm;
 import com.example.demo.form.GetShopForm;
@@ -39,9 +41,17 @@ public class BicyclesDao implements IBicyclesDao {
 		//パラメータ設定用Map
 		Map<String, String> param = new HashMap<>();
 		//パラメータが存在した場合セット
-		if(form.getBrandid() != null && form.getBrandid() != "") {
+		if(form.getBrandid() != null && form.getBrandid() != "" && (form.getBikename() != null && form.getBikename() != "")) {
+			sqlBuilder.append(" WHERE br.brandid = :brandid "
+					+ " AND bi.bikename LIKE :bikename");
+			param.put("brandid", form.getBrandid());
+			param.put("bikename", form.getBikename());
+		}else if(form.getBrandid() != null && form.getBrandid() != "") {
 			sqlBuilder.append(" WHERE br.brandid = :brandid");
 			param.put("brandid", form.getBrandid());
+		}else if(form.getBikename() != null && form.getBikename() != "") {
+			sqlBuilder.append(" WHERE bi.bikename LIKE :bikename");
+			param.put("bikename", form.getBikename());
 		}
 		
 		String sql = sqlBuilder.toString();
@@ -133,8 +143,8 @@ public class BicyclesDao implements IBicyclesDao {
 	public List<ShopList> findShop(GetShopForm form) {
 		
 		StringBuilder sqlBuilder = new StringBuilder();
-		sqlBuilder.append("SELECT bi.id, s.shopid, s.shopname, s.bikeid "
-				+ "FROM bicycles AS bi INNER JOIN shops AS s  ON bi.id = s.bikeid ");
+		sqlBuilder.append("SELECT bi.id, s.shopnumber, s.bikeid, sa.shopname, sa.address, sa.telephone "
+				+ "FROM bicycles AS bi INNER JOIN shops AS s  ON bi.id = s.bikeid INNER JOIN shopall AS sa ON s.shopnumber = sa.id ");
 		
 		//パラメータ設定用Map
 		Map<String, Integer> param = new HashMap<>();
@@ -155,9 +165,11 @@ public class BicyclesDao implements IBicyclesDao {
         for(Map<String, Object> result : resultList) {
         	ShopList shopList = new ShopList();
         	shopList.setId((int)result.get("id"));
-        	shopList.setShopid((int)result.get("shopid"));
+        	shopList.setShopnumber((int)result.get("shopnumber"));
         	shopList.setShopname((String)result.get("shopname"));
         	shopList.setBikeid((int)result.get("bikeid"));
+        	shopList.setAddress((String)result.get("address"));
+        	shopList.setTelephone((String)result.get("telephone"));
             list.add(shopList);
         }
         return list;
@@ -169,15 +181,15 @@ public class BicyclesDao implements IBicyclesDao {
 	public List<ShopListAll> findShopAll(GetShopAllForm form){
 		
 		StringBuilder sqlBuilder = new StringBuilder();
-		sqlBuilder.append("SELECT s.shopid, s.shopname, s.bikeid, s.prefecture, s.address, p.prefecturename "
-				+ "FROM shops AS s INNER JOIN prefectures AS p ON s.prefecture = p.prefectureid "
-				+ "GROUP BY shopname ");
+		sqlBuilder.append("SELECT sa.id, sa.shopname, sa.prefecture, sa.address, sa.telephone, p.prefecturename "
+				+ "FROM shopall AS sa INNER JOIN prefectures AS p ON sa.prefecture = p.prefectureid "
+				+ "GROUP BY shopname");
 		
 		//パラメータ設定用Map
 		Map<String, String> param = new HashMap<>();
 		//パラメータが存在した場合にセット
 		if(form.getPrefecture() != null && form.getPrefecture() != "") {
-			sqlBuilder.delete(158,179);
+			sqlBuilder.delete(166,183);
 			sqlBuilder.append(" WHERE p.prefectureid = :prefectureid");
 			sqlBuilder.append(" GROUP BY shopname");
 			param.put("prefectureid", form.getPrefecture());
@@ -194,16 +206,57 @@ public class BicyclesDao implements IBicyclesDao {
 		//データをShopListAllにまとめる
 		for(Map<String, Object> result : resultList) {
 			ShopListAll shopListAll = new ShopListAll();
-            shopListAll.setShopid((int)result.get("shopid"));
+            shopListAll.setId((int)result.get("id"));
 			shopListAll.setShopname((String)result.get("shopname"));
-			shopListAll.setBikeid((int)result.get("bikeid"));
 			shopListAll.setPrefecture((String)result.get("prefecture"));
 			shopListAll.setAddress((String)result.get("address"));
 			shopListAll.setPrefecturename((String)result.get("prefecturename"));
+			shopListAll.setTelephone((String)result.get("telephone"));
 			list.add(shopListAll);
 			
 		}
 		return list;
+	}
+	
+	//ショップに登録されているバイクを取得
+	@Override
+	public List<BikeListInShop> findBikeInShop(GetBikeListInShop form){
+		
+		StringBuilder sqlBuilder = new StringBuilder();
+		sqlBuilder.append("SELECT sa.id, s.bikeid, bi.bikename, bi.brandid, bi.value, bi.imageurl, br.brandname "
+				+ "FROM shopall AS sa INNER JOIN shops AS s ON sa.id = s.shopnumber "
+				+ "INNER JOIN bicycles AS bi ON s.bikeid = bi.id "
+				+ "INNER JOIN brand AS br ON bi.brandid = br.brandid ");
+		
+		//パラメータ設定用Map
+		Map<String, Integer> param = new HashMap<>();
+		//パラメータが存在した場合にセット
+		if(form.getId() != 0) {
+			sqlBuilder.append(" WHERE sa.id = :id");
+			param.put("id", form.getId());
+		}
+		
+		String sql = sqlBuilder.toString();
+		
+		//タスク一覧をMapのListで取得
+        List<Map<String, Object>> resultList = jdbcTemplate.queryForList(sql, param);
+        //return用の空のListを用意
+        List<BikeListInShop> list = new ArrayList<BikeListInShop>();
+        
+        //データをBikeListInShopにまとめる
+        for(Map<String, Object> result : resultList) {
+        	BikeListInShop bikeListInShop = new BikeListInShop();
+        	bikeListInShop.setId((int)result.get("id"));
+        	bikeListInShop.setBikeid((int)result.get("bikeid"));
+        	bikeListInShop.setBikename((String)result.get("bikename"));
+        	bikeListInShop.setBrandid((String)result.get("brandid"));
+        	bikeListInShop.setValue((int)result.get("value"));
+        	bikeListInShop.setImageurl((String)result.get("imageurl"));
+        	bikeListInShop.setBrandname((String)result.get("brandname"));
+        	list.add(bikeListInShop);
+        }
+        
+        return list;
 	}
 	
 }

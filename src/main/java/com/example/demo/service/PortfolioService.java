@@ -11,8 +11,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.example.demo.entity.Bicycles;
+import com.example.demo.entity.BikeListInShop;
 import com.example.demo.entity.ShopList;
 import com.example.demo.entity.ShopListAll;
+import com.example.demo.form.GetBikeListInShop;
 import com.example.demo.form.GetForm;
 import com.example.demo.form.GetShopAllForm;
 import com.example.demo.form.GetShopForm;
@@ -58,5 +60,9 @@ public class PortfolioService {
 	
 	public List<ShopListAll> findShopAll(GetShopAllForm form){
 		return dao.findShopAll(form);
+	}
+	
+	public List<BikeListInShop> findBikeInShop(GetBikeListInShop form){
+		return dao.findBikeInShop(form);
 	}
 }

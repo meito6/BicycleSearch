@@ -7,6 +7,7 @@
   <title>BICYCLE SEARCH</title>
   <!-- bootstrapを読み込む -->
   <link rel="stylesheet" type="text/css" th:href="@{/css/bootstrap.min.css}">
+  <link th:href="@{/css/bs.css}" rel="stylesheet" type="text/css">
   <!-- jqueryを読み込む -->
   <script type="text/javascript" th:src="@{/js/jquery-3.6.1.min.js}"></script>
   <!-- bootstrap-datepickerを読み込む -->
@@ -26,10 +27,14 @@
   </head>
 <body>
 
+  <div class="mb-5">
   <div th:replace="header :: header"></div>
+  </div>
 
-    <div class="container">
-    
+ <div class="container-fluid">
+  <div class="row">
+  <div class="col-2">
+  <div class="sidebar-fixed">
       <div class="search m-2">
         <form method="GET" th:action="@{/portfolio/list}" th:object="${getForm}">
             <div class="form-group">
@@ -66,24 +71,39 @@
               </p>
             </div>
           </div>
+          
+          <div class="form-group">
+            <label for="formGroupExampleInput">BIKE NAME</label>
+            <input type="text" class="form-control" id="bikename" th:field="*{bikename}">
+          </div>
+          
           <div class="row">
               <button type="submit" class="btn btn-outline-dark">検索</button>
           </div>
         </form>
       </div>
+    </div>  
+    </div>   
     
+    
+      <div class="col">
       <div class="row">
-        <div class="col-md-4" th:each="item: ${list}">
-          <div class="border">
-            <img th:src="@{/image/{item.imageurl}.jpg (item.imageurl=${item.imageurl})}" alt="road bike pictures" class="img-fluid">
-            <a th:href="@{/portfolio/{id}(id=${item.id})}">
-              <h3 th:text=${item.bikename}></h3>
-            </a>
-            <p th:text=${item.brandname}></p>
+        <div class="col-md-3" th:each="item: ${list}">
+          <div class="mb-4">
+            <div class="card">
+              <img class="card-img-top" th:src="@{/image/{item.imageurl}.jpg (item.imageurl=${item.imageurl})}" alt="road bike pictures" height="200">
+              <div class="card-body">
+                <a th:href="@{/portfolio/{id}(id=${item.id})}">
+                  <h3 class="card-title" th:text=${item.bikename}></h3>
+                </a>
+                <p class="card-text" th:text=${item.brandname}></p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
-      
+      </div>
+    </div>
     </div>
     
 </body>

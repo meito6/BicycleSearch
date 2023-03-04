@@ -4,8 +4,17 @@
   position: sticky;
   top: 60px;
   height: 100vh;
+  border-width: 2px 1px 2px 2px;
+  border-color: #ffffff #c0c0c0 #ffffff #ffffff;
+  border-style: solid;
 }
 
 .text-1{
 	font-size: 1vw;
+}
+
+.sidebar-border{
+  border-width: 2px 5px 2px 5px;
+  border-color: #f37053 red #160732 blue;
+  border-style: solid;
 }
