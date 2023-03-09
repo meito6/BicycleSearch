@@ -31,7 +31,7 @@ private final PortfolioService portfolioservice;
 
 	 @PostMapping
 	    String postLogin() {
-	        return "redirect:/portfolio/list";
+	        return "redirect:portfolio/list";
 	    }
 	 
 	 /**
@@ -49,7 +49,7 @@ private final PortfolioService portfolioservice;
 		 }
 		 int count = portfolioservice.insert(form);
 		 model.addAttribute("UserPostForm", form);
-		 return "redirect:/loginform";
+		 return "redirect:loginform";
 	 }
 
 }
