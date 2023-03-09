@@ -5,7 +5,7 @@ import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 public class MvcConfig {
 
 	/**
-     * 「/login」というURLからlogin.htmlを呼び出す
+     * 「/login」というURLからloginForm.htmlを呼び出す
      */
     public void addViewControllers(ViewControllerRegistry registry) {
         registry.addViewController("/login").setViewName("loginForm");

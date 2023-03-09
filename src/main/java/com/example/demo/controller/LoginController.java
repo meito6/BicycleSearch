@@ -31,7 +31,7 @@ private final PortfolioService portfolioservice;
 
 	 @PostMapping
 	    String postLogin() {
-	        return "redirect:portfolio/list";
+	        return "redirect:/portfolio/list";
 	    }
 	 
 	 /**
@@ -45,11 +45,11 @@ private final PortfolioService portfolioservice;
 	 public String insert(@Valid @ModelAttribute UserPostForm form, BindingResult result, Model model) {
 		 if(result.hasErrors()) {
 			 model.addAttribute("error","パラメータエラーが発生しました");
-			 return "loginform";
+			 return "loginForm";
 		 }
 		 int count = portfolioservice.insert(form);
 		 model.addAttribute("UserPostForm", form);
-		 return "redirect:loginform";
+		 return "redirect:/loginForm";
 	 }
 
 }
