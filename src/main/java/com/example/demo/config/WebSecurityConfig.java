@@ -27,16 +27,16 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
     public void configure(HttpSecurity http) throws Exception{
         http
             .authorizeRequests()
-            .antMatchers("/js/**", "/css/**", "/loginForm", "/insert").permitAll()
+            .antMatchers("/js/**", "/css/**", "/loginform", "/insert").permitAll()
             .anyRequest().authenticated()
             .and()
             .formLogin()
-            .loginPage("/loginForm")
+            .loginPage("/loginform")
             .loginProcessingUrl("/login")
             .usernameParameter("username")
             .passwordParameter("password")
             .defaultSuccessUrl("/portfolio/list", true)
-            .failureUrl("/loginForm?error=true");
+            .failureUrl("/loginform?error=true");
     }
      
     // ユーザ情報の取得

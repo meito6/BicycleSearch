@@ -24,9 +24,9 @@ private final PortfolioService portfolioservice;
 	}
 	
 	
-	@GetMapping("/loginForm")
+	@GetMapping("/loginform")
 	String gerlogin() {
-		return "loginForm";
+		return "loginform";
 	}
 
 	 @PostMapping
