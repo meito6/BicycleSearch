@@ -39,7 +39,7 @@
         <form method="GET" th:action="@{/portfolio/list}" th:object="${getForm}">
             <div class="form-group">
             <div class="row">
-            <p>BRAND
+            <p>Brand
               <select id="brandid" name="brandid" class="form-select" th:value="${getForm.brandid}">
                 <option></option>
                 <option value="5" th:selected="${getForm.brandid} == 5">BIANCHI</option>
@@ -73,11 +73,11 @@
           </div>
           
           <div class="form-group">
-            <label for="formGroupExampleInput">BIKE NAME</label>
+            <label for="formGroupExampleInput">Bike Name</label>
             <input type="text" class="form-control" id="bikename" th:field="*{bikename}">
           </div>
           
-          <div class="row">
+          <div class="row top-margin">
               <button type="submit" class="btn btn-outline-dark">検索</button>
           </div>
         </form>
@@ -90,13 +90,20 @@
       <div class="row">
         <div class="col-md-3" th:each="item: ${list}">
           <div class="mb-4">
-            <div class="card">
-              <img class="card-img-top" th:src="@{/image/{item.imageurl}.jpg (item.imageurl=${item.imageurl})}" alt="road bike pictures" height="200">
+            <div class="card bg-light mb-3" style="max-width: 18rem;">
+              <a th:href="@{/portfolio/{id}(id=${item.id})}">
+                <img class="card-img-top" th:src="@{/image/{item.imageurl}.jpg (item.imageurl=${item.imageurl})}" alt="road bike pictures" height="200" >
+              </a>
               <div class="card-body">
-                <a th:href="@{/portfolio/{id}(id=${item.id})}">
-                  <h3 class="card-title" th:text=${item.bikename}></h3>
-                </a>
                 <p class="card-text" th:text=${item.brandname}></p>
+                <a th:href="@{/portfolio/{id}(id=${item.id})}">
+                  <div class="card-title" th:text=${item.bikename}></div>
+                  <div class="flex">
+                    <div><p th:text="${#numbers.formatInteger(item.value, 3, 'COMMA')}"></p></div>
+                    <div><p>円</p></div>
+                    <div><p>(税込)</p></div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>

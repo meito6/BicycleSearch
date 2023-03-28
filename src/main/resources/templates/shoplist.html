@@ -20,10 +20,23 @@
   
   <div th:replace="header :: header"></div>
   
-  <div>
-    <ul class="list-group" th:each="item : ${list}">
-      <li class="list-group-item" th:text="${item.shopname}"></li>
-    </ul>
+  <div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Telephone</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="item: ${list}">
+        <td th:text=${item.shopname}></td>
+        <td th:text=${item.address}></td>
+        <td th:text=${item.telephone}></td>
+      </tr>
+    </tbody>
+  </table>
   </div>
 
 </body>

@@ -29,26 +29,27 @@
         <ul class="list-group list-group-flush">
           <li class="list-group-item">
             <div class="d-flex flex-row bd-highlight mb-3">
-              <div><p class="text-1">販売名 &nbsp;</p></div>
+              <div><p>販売名 &nbsp;:</p></div>
               <div><p class="text-1" th:text="${bicycles.bikename}"></p></div>
             </div>
           </li>
           <li class="list-group-item">
             <div class="d-flex flex-row bd-highlight mb-3">
-              <div><p class="text-1">価格 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p></div>
-              <div><p class="text-1">&yen;</p></div>
-              <div><p class="text-1" th:text="${bicycles.value}"></p></div>
+              <div><p>価格 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:</p></div>
+              <div><p class="text-1" th:text="${#numbers.formatInteger(bicycles.value, 3, 'COMMA')}"></p></div>
+              <div><p class="text-1">円</p></div>
+              <div><p class="text-1">(税込)</p></div>
             </div>
           </li>
           <li class="list-group-item">
             <div class="d-flex flex-row bd-highlight mb-3">
-              <div><p class="text-1">カラー&nbsp;&nbsp;</p></div>
+              <div><p>カラー&nbsp;&nbsp;:</p></div>
               <div><p class="text-1" th:text="${bicycles.color}"></p></div>
             </div>
           </li>
           <li class="list-group-item">
             <div class="d-flex flex-row bd-highlight mb-3">
-              <div><p class="text-1">サイズ &nbsp;&nbsp;</p></div>
+              <div><p>サイズ&nbsp;:</p></div>
               <div><p class="text-1" th:text="${bicycles.size}"></p></div>
             </div>
           </li>
@@ -65,7 +66,7 @@
       </div>
       
       <div class="col">
-          <img th:src="@{/image/{bicycles.imageurl}.jpg (bicycles.imageurl=${bicycles.imageurl})}" alt="road bike pictures" width="70%" height="70%" style="display: block; margin: auto;">
+          <img th:src="@{/image/{bicycles.imageurl}.jpg (bicycles.imageurl=${bicycles.imageurl})}" alt="road bike pictures" width="60%" height="60%" style="display: block; margin: auto;">
         
         <table class="table table-striped">
           <thead>

@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DuplicateKeyException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -29,16 +30,16 @@ private final PortfolioService portfolioservice;
 		return "loginform";
 	}
 
-	 @PostMapping
-	    String postLogin() {
-	        return "redirect:/portfolio/list";
-	    }
+	@PostMapping
+	String postLogin() {
+	    return "redirect:/portfolio/list";
+	}
 	 
 	 /**
 	  * Userを新規登録
 	  * @param UserPostForm
 	  * @param model
-	  * @return
+	  * @return resources/templates/loginform
 	  */
 	 
 	 @PostMapping(path="/insert", params="insert")
@@ -47,9 +48,22 @@ private final PortfolioService portfolioservice;
 			 model.addAttribute("error","パラメータエラーが発生しました");
 			 return "loginForm";
 		 }
-		 int count = portfolioservice.insert(form);
-		 model.addAttribute("UserPostForm", form);
-		 return "redirect:/loginForm";
+		 
+		 try {
+			 portfolioservice.insert(form);
+			 model.addAttribute("UserPostForm", form);
+			 return "loginForm";
+		 }catch(DuplicateKeyException e) {
+			 model.addAttribute("error", "ユーザーネームは既に登録されています");
+	         return "insertform";
+		 }
 	 }
-
+	 /**
+	  * 新規登録ページに移動
+	  * @return resources/templates/insertform
+	  */
+	 @GetMapping("/insertform")
+	 String getinsertform() {
+		 return "insertform";
+	 }
 }

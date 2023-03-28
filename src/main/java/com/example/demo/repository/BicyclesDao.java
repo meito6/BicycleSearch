@@ -223,7 +223,7 @@ public class BicyclesDao implements IBicyclesDao {
 	public List<BikeListInShop> findBikeInShop(GetBikeListInShop form){
 		
 		StringBuilder sqlBuilder = new StringBuilder();
-		sqlBuilder.append("SELECT sa.id, s.bikeid, bi.bikename, bi.brandid, bi.value, bi.imageurl, br.brandname "
+		sqlBuilder.append("SELECT sa.id, sa.shopname, s.bikeid, bi.bikename, bi.brandid, bi.value, bi.imageurl, br.brandname "
 				+ "FROM shopall AS sa INNER JOIN shops AS s ON sa.id = s.shopnumber "
 				+ "INNER JOIN bicycles AS bi ON s.bikeid = bi.id "
 				+ "INNER JOIN brand AS br ON bi.brandid = br.brandid ");
@@ -247,6 +247,7 @@ public class BicyclesDao implements IBicyclesDao {
         for(Map<String, Object> result : resultList) {
         	BikeListInShop bikeListInShop = new BikeListInShop();
         	bikeListInShop.setId((int)result.get("id"));
+        	bikeListInShop.setShopname((String)result.get("shopname"));
         	bikeListInShop.setBikeid((int)result.get("bikeid"));
         	bikeListInShop.setBikename((String)result.get("bikename"));
         	bikeListInShop.setBrandid((String)result.get("brandid"));

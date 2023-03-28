@@ -24,7 +24,7 @@ private final NamedParameterJdbcTemplate jdbcTemplate;
 	@Override
 	public Optional<User> findUser(String username){
 		
-		String sql = "SELECT id, username, password "
+		String sql = "SELECT username, password "
 				+ "FROM users "
 				+ "WHERE username = :username";
 		//パラメータ設定用Map
@@ -35,7 +35,6 @@ private final NamedParameterJdbcTemplate jdbcTemplate;
 		//一件取得
 		try {
 			Map<String, Object> result = jdbcTemplate.queryForMap(sql, param);
-			user.setId((int)result.get("id"));
 			user.setUsername((String)result.get("username"));
 			user.setPassword((String)result.get("password"));
 		}catch(EmptyResultDataAccessException e){

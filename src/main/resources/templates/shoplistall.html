@@ -29,7 +29,7 @@
             <form method="GET" th:action="@{/portfolio/shoplistall}" th:object="${getShopAllForm}">
               <div class="form-group">
                 <div class="row">
-                 <p>PREFECTURE
+                 <p>Prefecture
                  <select id="prefecture" name="prefecture" class="form-select" th:value="${getShopAllForm.prefecture}">
                   <option></option>
                   <option value="01" th:selected="${getShopAllForm.prefecture} == 01">北海道</option>
@@ -83,7 +83,7 @@
                  </p>
                 </div>
               </div>
-              <div class="row">
+              <div class="row top-margin">
                 <button type="submit" class="btn btn-outline-dark">検索</button>
               </div>
             </form>

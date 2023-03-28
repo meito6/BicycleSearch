@@ -18,3 +18,16 @@
   border-color: #f37053 red #160732 blue;
   border-style: solid;
 }
+
+.flex{
+    display: flex;
+}
+
+.margin1{
+	margin: 15px 15px 15px 0px;
+}
+
+.top-margin{
+	margin: 100px 0px 0px 0px;
+}
+

@@ -3,6 +3,8 @@ package com.example.demo.entity;
 public class BikeListInShop {
 
     private int id;
+    
+    private String shopname;
 	
 	private int bikeid;
 	
@@ -18,6 +20,14 @@ public class BikeListInShop {
 
 	public int getId() {
 		return id;
+	}
+
+	public String getShopname() {
+		return shopname;
+	}
+
+	public void setShopname(String shopname) {
+		this.shopname = shopname;
 	}
 
 	public void setId(int id) {

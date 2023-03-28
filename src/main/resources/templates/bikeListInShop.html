@@ -20,6 +20,10 @@
 <body>
   <div th:replace="header :: header"></div>
   
+  <div class="container">
+  
+  <div><h2 th:text=${list[0].shopname}></h2></div>
+  
   <table class="table">
     <thead>
       <tr>
@@ -36,10 +40,11 @@
         </td>
         <td th:text=${item.brandname}></td>
         <td th:text=${item.bikename}></td>
-        <td th:text=${item.value}></td>
+        <td th:text="${#numbers.formatInteger(item.value, 3, 'COMMA')}"></td>
       </tr>
     </tbody>
   </table>
+  </div>
 
 </body>
 </html>
