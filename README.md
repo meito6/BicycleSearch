@@ -5,6 +5,8 @@
 欲しいロードバイクがあるときに自分で探す労力を抑えることができます。
 ![リスト](https://user-images.githubusercontent.com/105871565/230464961-639e1c48-234c-43f6-aa49-9f9551cd9e23.jpg)
 
+![ロードバイク詳細](https://user-images.githubusercontent.com/105871565/230464396-2fb55514-6033-49f4-8a74-a49c539a639c.jpg)
+
 # 使用技術
 
 • Java 17
