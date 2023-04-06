@@ -7,7 +7,7 @@
 
 # 使用技術
 
-• Java 17
+• Java17
 
 • Eclipse 
 
