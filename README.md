@@ -9,7 +9,7 @@
 
 • Java 17
 
-• Eclipse 
+• Eclipse 4.23.0
 
 • MySQL
 
