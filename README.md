@@ -7,18 +7,18 @@
 
 # 使用技術
 
-・Java
+• Java 17
 
-・Eclipse
+• Eclipse 
 
-・MySQL
+• MySQL
 
-・Springboot
+• Springboot 2.7.5
 
-・Gradle
+• Gradle
 
-・Thymeleaf
+• Thymeleaf
 
-・Spring Security
+• Spring Security
 
-・Spring Web
+• Spring Web
