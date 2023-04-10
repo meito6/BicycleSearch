@@ -9,7 +9,7 @@
 
 ![店舗検索結果](https://user-images.githubusercontent.com/105871565/230479581-b5aa0cc9-832b-49ae-889f-ec5a8fc61b8f.jpg)
 
-URL　: https://dashboard.heroku.com/apps/bicycle-search/loginform
+URL　: [https://dashboard.heroku.com/apps/bicycle-search/loginform](https://bicycle-search.herokuapp.com/loginform)
 
 # 使用技術
 
